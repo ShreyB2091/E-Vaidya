@@ -13,7 +13,7 @@ const Vitals = () => {
 
 
     const handleClick = () => {
-        axios.post("http://localhost:9002/nurse", {roll:"210135",vitals_Oxgen:"Abcd",vitals_Temperature:98,vitals_BloodPressure:"Abcd"})
+        axios.post("http://localhost:9002/nurse", {roll:state.id,vitals_Oxgen:"Abcd",vitals_Temperature:98,vitals_BloodPressure:"Abcd"})
             .then( res => {
                 history.push("/nurse")
             }).catch(err => {

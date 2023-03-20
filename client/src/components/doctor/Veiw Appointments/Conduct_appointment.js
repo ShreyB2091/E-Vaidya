@@ -23,7 +23,7 @@ const Conduct_appointment = () => {
     const main=()=>{
         axios.post('http://localhost:9002/doctor_prescribe', {
             rollno: "210496",
-            medication: medicine ,
+            medication: medicine,
             remark: val
         }).then((res)=>{
             console.log(res);
@@ -46,7 +46,7 @@ const Conduct_appointment = () => {
                 break;
             }
         }
-        setMedicine([...medicine, {name: name, dose: dose, days: days}]);
+        setMedicine([...medicine, {name_of_medicine: name, dosage: dose, days: days}]);
         document.getElementById('name').value = "";
         document.getElementById('days').value = 0;
     }
