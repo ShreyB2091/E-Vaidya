@@ -107,16 +107,15 @@ app.post("/request_student", (req, res)=> {
         }
     )
     
-    app.get("/upcoming_student", (req, res)=> {
+app.get("/upcoming_student", (req, res)=> {
        Student_request.find({identity:"student"}, (err, request) => {
-              if(request){
-                res.send({message: "Upcoming appointments", request: request})
-              } else {
-                res.send({message: "No appointments"})
-              }
-       })
-    })  
-
+		if(request){
+			res.send({message: "Upcoming appointments", request: request})
+		} else {
+			res.send({message: "No appointments"})
+		}
+    })
+})
 
 const apptSchema = new mongoose.Schema({
     name: String,
@@ -267,8 +266,6 @@ app.get("/doctor:name", (req, res) =>{
         })
 });
 
-
-
 app.post("/nurse", (req, res) => {
     console.log(req.body);
     Med.findOne({rollno: req.body.rollno}, (err, stuff) => {
@@ -298,7 +295,20 @@ app.post("/doctor_prescribe", (req, res) => {
     })
 
 })
-    
+
+let docschedule = {"Dr. A": "morning", "Dr. B": "evening", "Dr. C":"both"};
+
+app.get("/docschedule", (req, res) => {
+	res.send(docschedule)
+});
+
+app.post("/docschedule", (req, res) => {
+	console.log(req.body);
+	docschedule = req.body;
+	res.send("Updated");
+	
+})
+
 app.get("/student_history:roll", (req, res) => {
     Med.findOne({rollno: req.params.roll}, (err, stuff) => {
         if(stuff){

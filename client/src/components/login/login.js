@@ -2,6 +2,9 @@ import React, {useState} from "react"
 import "./login.css"
 import axios from "axios"
 import { useHistory } from "react-router-dom"
+
+import Button from "react-bootstrap/button"
+
 let global=[];
 const Login = ({ setLoginUser}) => {
 
@@ -54,9 +57,9 @@ const Login = ({ setLoginUser}) => {
             <h1>Login</h1>
             <input type="text" name="email" value={user.email} onChange={handleChange} placeholder="Enter your Email"></input>
             <input type="password" name="password" value={user.password} onChange={handleChange}  placeholder="Enter your Password" ></input>
-            <div className="button" onClick={login}>Login</div>
+            <Button className="button w-100" onClick={login}>Login</Button>
             <div>or</div>
-            <div className="button" onClick={() => history.push("/register")}>Register</div>
+            <Button className="button w-100" onClick={() => history.push("/register")}>Register</Button>
         </div>
     )
 }

@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import styles from "./DoctorAppointments.module.css";
 import axios from "axios";
 
+import Button from "react-bootstrap/Button";
+
 // const DoctorAppointments = () => {
 //     return (
 //         <div className="container">
@@ -89,57 +91,57 @@ const DoctorAppointments = () => {
 	{editing
 	? (<div>
 		<h1>Editing tommorrow's doctor assignment</h1>
-		<div className={styles.container}>
+		<div className={`container ${styles.container}`}>
 			{Object.keys(edited_schedule).map((doctor) => {
-				return(<>
-					<div key={`${doctor}-editing`}>{doctor /*this is a key of the object -> is the doctor's name*/}</div>
-					<div key={`${doctor}-edit-opts-morn`}>
+				return(<div className="row">
+					<div key={`${doctor}-editing`} className="col">{doctor /*this is a key of the object -> is the doctor's name*/}</div>
+					<div key={`${doctor}-edit-opts-morn`} className="col">
 						<label>
 						<input type="radio" id="morning" name={`shift_${doctor}`} value="morning" checked={"morning" === edited_schedule[doctor]} onChange={handleChange(doctor,"morning")}/>
 						Morning</label>
 					</div>
-					<div key={`${doctor}-edit-opts-even`}>
+					<div key={`${doctor}-edit-opts-even`} className="col">
 						<label>
 						<input type="radio" id="evening" name={`shift_${doctor}`} value="evening" checked={"evening" === edited_schedule[doctor]} onChange={handleChange(doctor,"evening")}/>
 						Evening</label>
 					</div>
-					<div key={`${doctor}-edit-opts-both`}>
+					<div key={`${doctor}-edit-opts-both`} className="col">
 						<label>
 						<input type="radio" id="both" name={`shift_${doctor}`} value="both" checked={"both" === edited_schedule[doctor]} onChange={handleChange(doctor,"both")}/>
 						Both</label>
 					</div>
-				</>)
+				</div>)
 			})}
 		</div>
-		<button onClick={saveAssn}><h3>Save and submit assignment</h3></button><button onClick={cancelAssn}><h3>Cancel</h3></button>
+		<Button onClick={saveAssn}>Save and submit assignment</Button><Button variant="secondary" onClick={cancelAssn}>Cancel</Button>
 	</div>)
 	: (<div>
 		{//display current schedule
 		}
 		<h1>Tomorrow's Doctor Assignment</h1>
-		<div className={styles.container}>
+		<div className={`${styles.container} container`}>
 			{Object.keys(current_schedule).map((doctor) => {
-				return(<>
-					<div key={`${doctor}-current`}>{doctor /*this is a key of the object -> is the doctor's name*/}</div>
-					<div key={`${doctor}-curr-opts-morn`}>
+				return(<div className="row">
+					<div key={`${doctor}-current`} className="col">{doctor /*this is a key of the object -> is the doctor's name*/}</div>
+					<div key={`${doctor}-curr-opts-morn`} className="col">
 						<label>
 						<input type="radio" id="morning" name={`shift_${doctor}`} value="morning" checked={"morning" === current_schedule[doctor]} readOnly/>
 						Morning</label>
 					</div>
-					<div key={`${doctor}-curr-opts-even`}>
+					<div key={`${doctor}-curr-opts-even`} className="col">
 						<label>
 						<input type="radio" id="evening" name={`shift_${doctor}`} value="evening" checked={"evening" === current_schedule[doctor]} readOnly/>
 						Evening</label>
 					</div>
-					<div key={`${doctor}-curr-opts-both`}>
+					<div key={`${doctor}-curr-opts-both`} className="col">
 						<label>
 						<input type="radio" id="both" name={`shift_${doctor}`} value="both" checked={"both" === current_schedule[doctor]} readOnly/>
 						Both</label>
 					</div>
-				</>)
+				</div>)
 			})}
 		</div>
-		<button onClick={() => {setEditing(true);}}><h3>Change</h3></button>
+		<Button onClick={() => {setEditing(true);}}>Change</Button>
 	</div>)}
 	{/*calendar of doctor availability*/}
 	<div></div>
