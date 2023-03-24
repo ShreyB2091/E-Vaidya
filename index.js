@@ -1,6 +1,6 @@
 //ABC -Aniket
 
-import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+import * as dotenv from 'dotenv'
 dotenv.config()
 import express from "express"
 import cors from "cors"
@@ -15,9 +15,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(cors())
 app.use(cookieParser())
 
-//mongodb+srv://CS:5i4tDRJZM5W78xgn@cluster0.5ebvu5n.mongodb.net/
-//mongodb+srv://aniketsborkar:AeQrXz4v5Go8WTKP@cluster0.ukqevpn.mongodb.net/test
-mongoose.connect("mongodb+srv://aniketsborkar:AeQrXz4v5Go8WTKP@cluster0.ukqevpn.mongodb.net/test", {
+mongoose.connect("mongodb+srv://" + process.env.SERVER_PASSWORD_SECRET + "@cluster0.ukqevpn.mongodb.net/test", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }, () => {
@@ -72,12 +70,9 @@ app.post("/login", async (req, res)=> {
                         }
                     })
 
-                    // console.log(accessToken)
-                    // console.log(newLoggedUser)
                     res.cookie('jwt', refreshToken, {httpOnly : true, maxAge : 7 * 24 * 60 * 60 * 1000})
                     res.json({ message: "Login Successfull", user: user, accessToken })
                     
-                    // res.send({message: "Login Successfull", user: user})
                 } else {
                     res.send({ message: "Password didn't match"})
                 }
@@ -107,7 +102,7 @@ app.post("/register", async (req, res)=> {
                     identity,
                     password : hashedPassword
                 })
-                // console.log(user)
+
                 await user.save(err => {
                     if(err) {
                         res.send(err)
