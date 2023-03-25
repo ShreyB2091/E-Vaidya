@@ -2,6 +2,7 @@ import "./Home.css"
 import React from "react";
 import {Link,useHistory} from "react-router-dom";
 import { global } from "../login/login";
+import lib from './lib.jpg'
 
 export default function Home(props) {
 	const history= useHistory();
@@ -13,12 +14,16 @@ export default function Home(props) {
     history.push("/login")
    }
 	return (
-		<>
-		<Link to="student/request"><button>Request Appointment</button></Link>
+
+		<div className="container row home-page">
+		<Link to="student/request"><button className="student_home col-6"> Request Appointment</button></Link>
 		<br/>
-		<Link to="student/upcoming"><button>View Upcoming Appointments</button></Link>
-		<Link to="student/history"><button>View Medical History</button></Link>
-		<Link to="student/doctors"><button>View Doctor Schedules</button></Link>
-		</>
+		<Link to="student/upcoming"><button className="student_home col-6"> View Upcoming Appointments</button></Link>
+		<Link to="student/history"><button className="student_home col-6"> View Medical History</button></Link>
+		<Link to="student/doctors"><button className="student_home col-6"> View Doctor Schedules</button></Link>
+		{/* <img src={lib} alt="P K Kelkar Library"/> */}
+
+
+		</div>
 	)
 }

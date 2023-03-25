@@ -23,7 +23,7 @@ export default function History(props) {
 	return (
 		<div className="student_history">
 		<h2>Your medical history:</h2>
-		<h2>{history}</h2>
+		{/* <h2>{history}</h2> */}
 		</div>
 	)
 }
